@@ -14,13 +14,13 @@ class BookFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+   public function definition(): array
     {
-        return [
-            'title' => fake()->sentence(3),
-            'author' => fake()->name(),
-            'genre' => fake()->randomElement(['Fiction', 'Non-fiction', 'Sci-Fi']),
-            'year_published' => fake()->numberBetween(1990, 2025),
-        ];
+    return [
+        'title' => $this->faker->sentence(3),
+        'author' => $this->faker->name(),
+        'genre' => $this->faker->randomElement(['Fiction', 'Non-fiction', 'Sci-Fi', 'Mystery']),
+        'year_published' => $this->faker->year(),
+    ];
     }
 }

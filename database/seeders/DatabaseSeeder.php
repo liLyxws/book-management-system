@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        // This will create 10 random books using your BookFactory
-        Book::factory(10)->create();
+        // This will create 100 random books using your BookFactory
+        Book::factory(100)->create();
     }
 
         // User::factory(10)->create();

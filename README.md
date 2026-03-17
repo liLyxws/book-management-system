@@ -21,13 +21,19 @@ The `books` table contains the following fields used for managing the library re
 
 ## Features
 
+
+
 - **Create**: Allows adding new book records with validation for all required fields.
 - **Read**: Displays a paginated list of all books and allows viewing specific book details.
 - **Update**: Provides the ability to edit existing book information.
 - **Delete**: Allows removing book records from the database.
 
+### 📸 Application Interface
+![Book Management CRUD Demo](./images/book-list-screenshot.png)
+*(Note: Replace the path above with wherever you saved the image in your VS Code folder)*
+
 ## Setup Instructions
 
 1. **Clone the repository:**
    ```bash
-   git clone [PASTE_YOUR_REPO_LINK_HERE]
+   git clone [(https://github.com/liLyxws/book-management-system.git)]
