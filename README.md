@@ -30,7 +30,7 @@ The `books` table contains the following fields used for managing the library re
 
 ### 📸 Application Interface
 ![Book Management CRUD Demo](./images/book-list-screenshot.png)
-*(Note: Replace the path above with wherever you saved the image in your VS Code folder)*
+
 
 ## Setup Instructions
 
