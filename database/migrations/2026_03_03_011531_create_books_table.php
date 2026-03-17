@@ -9,14 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('student_id')->unique();
-            $table->string('name');
-            $table->enum('course', ['BSIS', 'BAB', 'BSAIS', 'BSSW', 'BSA']);
-            $table->year('year');
+            $table->string('title');
+            $table->string('author');
+            $table->string('genre');
+            $table->integer('year_published');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('books');
     }
 };
