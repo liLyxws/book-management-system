@@ -29,7 +29,7 @@ The `books` table contains the following fields used for managing the library re
 - **Delete**: Allows removing book records from the database.
 
 ### 📸 Application Interface
-![Book Management CRUD Demo](./images/book-list-screenshot.png)
+![Book Management CRUD Demo](./images/books-list.png)
 
 
 ## Setup Instructions
