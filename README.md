@@ -56,4 +56,4 @@ The `books` table contains the following fields:
 
 1. **Clone the repository:**
    ```bash
-   git clone [https://github.com/liLyxws/book-management-system.git](https://github.com/liLyxws/book-management-system.git)
+   git clone [](https://github.com/liLyxws/book-management-system.git)
