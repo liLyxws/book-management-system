@@ -18,7 +18,7 @@
                         <table class="table table-bordered">
                             <tr>
                                 <th width="200">Book ID</th>
-                                <td>{{ $book->id }}</td>
+                                <td>{{ $book->book_id    }}</td>
                             </tr>
                             <tr>
                                 <th>Title</th>

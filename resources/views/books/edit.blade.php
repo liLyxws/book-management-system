@@ -30,6 +30,11 @@
                         @method('PUT')
 
                         <div class="mb-3">
+                            <label for="book_id" class="form-label">Book ID</label>
+                            <input type="text" class="form-control" name="book_id" value="{{ old('book_id', $book->book_id) }}" readonly>
+                        </div>
+
+                        <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
                             <input type="text" class="form-control" name="title" value="{{ old('title', $book->title) }}" required>
                         </div>
@@ -40,13 +45,36 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="genre" class="form-label">Genre</label>
-                            <input type="text" class="form-control" name="genre" value="{{ old('genre', $book->genre) }}" required>
-                        </div>
+                                <label for="genre" class="form-label">Genre</label>
+                                <select class="form-select @error('genre') is-invalid @enderror" 
+                                        id="genre" name="genre" required>
+                                    <option value="" selected disabled>Choose a genre...</option>
+                                    <option value="Fiction" {{ old('genre') == 'Fiction' ? 'selected' : '' }}>Fiction</option>
+                                    <option value="Non-fiction" {{ old('genre') == 'Non-fiction' ? 'selected' : '' }}>Non-fiction</option>
+                                    <option value="Mystery" {{ old('genre') == 'Mystery' ? 'selected' : '' }}>Mystery</option>
+                                    <option value="Sci-Fi" {{ old('genre') == 'Sci-Fi' ? 'selected' : '' }}>Sci-Fi</option>
+                                    <option value="History" {{ old('genre') == 'History' ? 'selected' : '' }}>History</option>
+                                    <option value="Biography" {{ old('genre') == 'Biography' ? 'selected' : '' }}>Biography</option>
+                                    <option value="Fantasy" {{ old('genre') == 'Fantasy' ? 'selected' : '' }}>Fantasy</option>
+                                    <option value="Romance" {{ old('genre') == 'Romance' ? 'selected' : '' }}>Romance</option>
+                                    <option value="Thriller" {{ old('genre') == 'Thriller' ? 'selected' : '' }}>Thriller</option>
+                                    <option value="Self-help" {{ old('genre') == 'Self-help' ? 'selected' : '' }}>Self-help</option>
+                                </select>
 
-                        <div class="mb-3">
-                            <label for="year_published" class="form-label">Year Published</label>
-                            <input type="number" class="form-control" name="year_published" value="{{ old('year_published', $book->year_published) }}" required>
+                         <div class="mb-3">
+                            <label for="year_published" class="form-label">Date Published</label>
+                            <input type="date" 
+                                class="form-control @error('year_published') is-invalid @enderror" 
+                                id="year_published" 
+                                name="year_published" 
+                                {{-- Pinaka-importante: I-format ang date para mabasa ng calendar picker --}}
+                                value="{{ old('year_published', \Carbon\Carbon::parse($book->year_published)->format('Y-m-d')) }}" 
+                                max="{{ date('Y-m-d') }}"
+                                required>
+                            
+                            @error('year_published')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="d-flex justify-content-between">

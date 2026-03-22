@@ -17,10 +17,12 @@ class BookFactory extends Factory
    public function definition(): array
     {
     return [
-        'title' => $this->faker->sentence(3),
+        // Gagawa ito ng "B-" + random number mula 1000 hanggang 9999
+        'book_id' => 'B-' . $this->faker->unique()->numberBetween(1000, 9999),
+        'title' => ucwords($this->faker->bs()), // Gagawa ng random title na may 3 words
         'author' => $this->faker->name(),
-        'genre' => $this->faker->randomElement(['Fiction', 'Non-fiction', 'Sci-Fi', 'Mystery']),
-        'year_published' => $this->faker->year(),
+        'genre' => $this->faker->randomElement(['Fiction', 'Non-fiction', 'Sci-Fi', 'Mystery', 'Biography', 'Fantasy', 'Thriller', 'Historical', 'Self-help']),
+        'year_published' => $this->faker->date('Y-m-d', 'now'),
     ];
     }
 }

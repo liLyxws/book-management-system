@@ -28,20 +28,38 @@ class BookController extends Controller
     /**
      * Store a newly created book in storage.
      */
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-            'genre' => 'required|string|max:100',
-            'year_published' => 'required|integer|min:1000|max:2026',
-        ]);
+ public function store(Request $request)
+{
+    $validated = $request->validate([
+        'book_id'        => 'required|unique:books,book_id',
+        'title'          => 'required|string|max:255',
+        'author'         => 'required|string|max:255',
+        'genre'          => 'required|string|max:100',
+        // PALITAN ITO: Gawing 'date' imbes na 'integer'
+        'year_published' => 'required|date|before_or_equal:today', 
+    ]);
 
-        Book::create($request->all());
+    // HINDI mo na kailangan lagyan ng . "-01-01" dahil kumpleto na ang date mula sa calendar
+    Book::create($validated);
 
-        return redirect()->route('books.index')
-            ->with('success', 'Book created successfully.');
-    }
+    return redirect()->route('books.index')->with('success', 'Book created!');
+}
+
+        public function update(Request $request, Book $book)
+        {
+            $validated = $request->validate([
+                'book_id'        => 'required|unique:books,book_id,' . $book->id,
+                'title'          => 'required|string|max:255',
+                'author'         => 'required|string|max:255',
+                'genre'          => 'required|string|max:100',
+                
+                'year_published' => 'required|date|before_or_equal:today',
+            ]);
+
+            $book->update($validated);
+
+            return redirect()->route('books.index')->with('success', 'Book updated!');
+        }
 
     /**
      * Display the specified book.
@@ -62,20 +80,7 @@ class BookController extends Controller
     /**
      * Update the specified book in storage.
      */
-    public function update(Request $request, Book $book)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
-            'genre' => 'required|string|max:100',
-            'year_published' => 'required|integer|min:1000|max:2026',
-        ]);
-
-        $book->update($request->all());
-
-        return redirect()->route('books.index')
-            ->with('success', 'Book updated successfully');
-    }
+ 
 
     /**
      * Remove the specified book from storage.

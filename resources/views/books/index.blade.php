@@ -40,7 +40,7 @@
                     <tbody>
                         @forelse($books as $book)
                             <tr>
-                                <td>{{ $book->id }}</td>
+                                <td>{{ $book->book_id }}</td>
                                 <td>{{ $book->title }}</td>
                                 <td>{{ $book->author }}</td>
                                 <td>{{ $book->genre }}</td>

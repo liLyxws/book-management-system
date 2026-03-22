@@ -29,6 +29,15 @@
                             @csrf
 
                             <div class="mb-3">
+                                <label for="book_id" class="form-label">Book ID</label>
+                                <input type="text" class="form-control @error('book_id') is-invalid @enderror" 
+                                       id="book_id" name="book_id" value="{{ old('book_id') }}" required>
+                                @error('book_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="title" class="form-label">Title</label>
                                 <input type="text" class="form-control @error('title') is-invalid @enderror" 
                                        id="title" name="title" value="{{ old('title') }}" required>
@@ -48,23 +57,41 @@
 
                             <div class="mb-3">
                                 <label for="genre" class="form-label">Genre</label>
-                                <input type="text" class="form-control @error('genre') is-invalid @enderror" 
-                                       id="genre" name="genre" value="{{ old('genre') }}" required>
+                                <select class="form-select @error('genre') is-invalid @enderror" 
+                                        id="genre" name="genre" required>
+                                    <option value="" selected disabled>Choose a genre...</option>
+                                    <option value="Fiction" {{ old('genre') == 'Fiction' ? 'selected' : '' }}>Fiction</option>
+                                    <option value="Non-fiction" {{ old('genre') == 'Non-fiction' ? 'selected' : '' }}>Non-fiction</option>
+                                    <option value="Mystery" {{ old('genre') == 'Mystery' ? 'selected' : '' }}>Mystery</option>
+                                    <option value="Sci-Fi" {{ old('genre') == 'Sci-Fi' ? 'selected' : '' }}>Sci-Fi</option>
+                                    <option value="History" {{ old('genre') == 'History' ? 'selected' : '' }}>History</option>
+                                    <option value="Biography" {{ old('genre') == 'Biography' ? 'selected' : '' }}>Biography</option>
+                                    <option value="Fantasy" {{ old('genre') == 'Fantasy' ? 'selected' : '' }}>Fantasy</option>
+                                    <option value="Romance" {{ old('genre') == 'Romance' ? 'selected' : '' }}>Romance</option>
+                                    <option value="Thriller" {{ old('genre') == 'Thriller' ? 'selected' : '' }}>Thriller</option>
+                                    <option value="Self-help" {{ old('genre') == 'Self-help' ? 'selected' : '' }}>Self-help</option>
+                                </select>
+                                    
                                 @error('genre')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
 
-                            <div class="mb-3">
-                                <label for="year_published" class="form-label">Year Published</label>
-                                <input type="number" class="form-control @error('year_published') is-invalid @enderror" 
-                                       id="year_published" name="year_published" value="{{ old('year_published') }}" required>
-                                @error('year_published')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
-                            </div>
-
- 
+                        <div class="mb-3">
+                            <label for="year_published" class="form-label">Date Published</label>
+                            <input type="date" 
+                                class="form-control @error('year_published') is-invalid @enderror" 
+                                id="year_published" 
+                                name="year_published" 
+                                {{-- SA CREATE: 'old' lang dapat ang laman --}}
+                                value="{{ old('year_published') }}" 
+                                max="{{ date('Y-m-d') }}"
+                                required>
+                            
+                            @error('year_published')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
 
                             <div class="d-flex justify-content-between mt-4">
                                 <a href="{{ route('books.index') }}" class="btn btn-secondary">Cancel</a>

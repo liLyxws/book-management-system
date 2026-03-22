@@ -11,6 +11,7 @@ class Book extends Model
 
     // Ito ang nagsasabi sa Laravel kung anong columns ang pwedeng i-save
     protected $fillable = [
+        'book_id',
         'title',
         'author',
         'genre',
